@@ -45,7 +45,7 @@ body {
     margin-bottom: 20px;
 }
 
-.key-field {
+#key-field {
     width: calc(100% - var(--copy-btn-w) - 5px);
     height: var(--input-h);
 
@@ -56,7 +56,7 @@ body {
     font-size: var(--font-s);
 }
 
-.key-field::placeholder {
+#key-field::placeholder {
     color: #A0A0A0;
 }
 
@@ -125,7 +125,7 @@ body {
     user-select: none;
 }
 
-.note {
+#note {
     position: absolute;
     color: white;
     padding: var(--input-lp);

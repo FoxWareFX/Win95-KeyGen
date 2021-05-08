@@ -5,9 +5,9 @@ String.prototype.replaceAt = function (index, repl) {
     return this.substr(0, index) + repl + this.substr(index + 1)
 }
 
-const keyField = $(".key-field");
-const initField = "key-field-init";
-const note = $(".note");
+const keyField = document.getElementById("key-field");
+const note = document.getElementById("note");
+
 // Contains all generation functions
 const keyType = {
     OFF: {
@@ -22,9 +22,11 @@ const keyType = {
 
 // Easter egg
 function ee() {
-    $.getJSON("res/splashes.json", function(result) {
-        show(result.data[rand(0, result.data.length - 1)], "linear-gradient(50deg, #FF0000, #FF9900)");
-    });
+    fetch("res/splashes.json")
+        .then(response => response.json())
+        .then(data => {
+            show(data.data[rand(0, data.data.length - 1)], "linear-gradient(50deg, #FF0000, #FF9900)");
+        });
 }
 
 // Random
@@ -114,15 +116,15 @@ function gW95oem() {
 // Generate the key
 function gen(prod, ver) {
     // Takes the function from the keyType 'enum'
-    keyField.val(keyType[prod][ver]());
+    keyField.value = keyType[prod][ver]();
 }
 
 // Show a notification
 let presses = 0;
 function show(text, bg) {
-    note.html(text);
-    note.css("background", bg);
-    note.css("top", "20px");
+    note.innerHTML = text;
+    note.style.background =  bg;
+    note.style.top = "20px";
 
     presses++;
 
@@ -132,7 +134,7 @@ function show(text, bg) {
          * necessary for not make the note go up and down.
          */
         if(presses <= 1)
-            note.css("top", "-" + note.outerHeight(true) + "px");
+            note.style.top = `-${note.outerHeight(true)}px`;
 
         presses--;
     }, 2000);
@@ -143,8 +145,8 @@ function show(text, bg) {
  * showing a notification if was copied successfully.
  */
 function copy() {
-    if(keyField.val() !== "") {
-        navigator.clipboard.writeText(keyField.val());
+    if(keyField.value !== "") {
+        navigator.clipboard.writeText(keyField.value);
         show("Copied to clipboard!", "#FF9900");
     } else
         show("Nothing to copy!", "#FF0000");

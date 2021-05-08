@@ -14,7 +14,7 @@
         <title>Win95 KeyGen</title>
     </head>
     <body>
-        <h2 class="note"></h2>
+        <h2 id="note"></h2>
 
         <div class="window">
             <h1 class="title">Windows 95 Key Generator</h1>
@@ -31,11 +31,11 @@
             </div>
 
             <div>
-                <input placeholder="The key will appear here..." type="text" class="key-field" readonly>
+                <input placeholder="The key will appear here..." type="text" id="key-field" readonly>
                 <button class="btn copy-key-btn" onclick="copy()">📋</button>
             </div>
 
-            <button class="btn gen-btn" onclick="gen($('#prod-sel').val(), $('#ver-sel').val())">GENERATE</button>
+            <button class="btn gen-btn" onclick="gen(document.getElementById('prod-sel').value, document.getElementById('ver-sel').value)">GENERATE</button>
         </div>
 
         <a id="gh" href="https://github.com/FoxWareFX/win95-keygen">
@@ -44,7 +44,6 @@
         </a>
         <p id="sign" onclick="ee()"><i class="fas fa-code"></i> with <i class="fas fa-heart"></i> by FoxWareFX</p>
 
-        <script src="lib/jquery.js"></script>
-        <script src="index.js"></script>
+        <script src="main.js"></script>
     </body>
 </html>
